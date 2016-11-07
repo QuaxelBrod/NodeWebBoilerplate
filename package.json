@@ -1,0 +1,36 @@
+{
+    "name": "pyramide",
+    "version": "0.0.1",
+    "description": "POC for pyramide holo projektor",
+    "main": "scr/browser/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "tslint **.ts",
+        "clean:server": "rimraf build/",
+        "clean:client": "rimraf www/js",
+        "clean:modules": "rimraf typings && rimraf node_modules",
+        "cleanall": "npm run clean:client && npm run clean:server && npm run clean:modules",
+        "installLibs": "npm install && typings install",
+        "build:debugServer": "set NODE_ENV=development && npm run clean:server && tsc -p src/server",
+        "build:debugClient": "set NODE_ENV=development && npm run clean:client && tsc -p src/browser",
+        "build:debugWebpack": "npm run build:debugClient && webpack --config src/browser/webpack.dev.js --progress --colors",
+        "build:Webpack": "set NODE_ENV=production && webpack --config config/webpack.prod.js",
+        "build:debug": " npm run build:debugClient && npm run build:debugServer",
+        "build:release": "npm run clean && npm run build:webpack",
+        "build": "npm run build:debug"
+    },
+    "author": "",
+    "license": "propritary",
+    "devDependencies": {
+        "rimraf": "^2.5.4",
+        "ts-loader": "^1.0.0",
+        "tslint": "latest",
+        "tslint-loader": "^2.1.5",
+        "typescript": "latest",
+        "webpack": "^1.13.3",
+        "webpack-typescript": "^0.5.6"
+    },
+    "dependencies": {
+        "express": "^4.14.0"
+    }
+}
